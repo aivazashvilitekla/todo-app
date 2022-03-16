@@ -8,7 +8,7 @@
       [(ngModel)]="taskName"
     />
     <select class="custom-select" [(ngModel)]="taskDifficulty">
-        <option selected [ngValue]="''" hidden>Selected</option>
+      <option selected [ngValue]="''" hidden>Selected</option>
       <option value="Easy">Easy</option>
       <option value="Medium">Medium</option>
       <option value="Hard">Hard</option>
@@ -23,18 +23,13 @@
       </div>
       <div class="card-body">
         <ng-container *ngIf="todoItems.length; else empty">
-        <div class="card inner-card" *ngFor="let item of todoItems">
-            <div class="card-body">
-              <div class="info">
-                  <h5 class="card-title">{{item.id}}.{{item.name}}</h5>
-                  <span class="tag">{{item.difficulty}}</span>
-              </div>
-              <div class="actions">
-                  <button class="btn btn-primary" (click)="moveForward(item)"><i class="fa fa-arrow-right"></i></button>
-                  <button class="btn btn-danger" (click)="deleteItem('todoItems', item.id)"><i class="fa fa-close"></i></button>
-              </div>
-            </div>
-        </div>
+          <div class="card inner-card" *ngFor="let item of todoItems">
+            <app-card
+              [item]="item"
+              (delete)="deleteItem($event)"
+              (moveForward)="moveForward($event)"
+            ></app-card>
+          </div>
         </ng-container>
       </div>
     </div>
@@ -44,20 +39,14 @@
         In Progress
       </div>
       <div class="card-body">
-        
         <ng-container *ngIf="inProgressItems.length; else empty">
-        <div class="card inner-card" *ngFor="let item of inProgressItems">
-            <div class="card-body">
-              <div class="info">
-                  <h5 class="card-title">{{item.id}}.{{item.name}}</h5>
-                  <span class="tag">{{item.difficulty}}</span>
-              </div>
-              <div class="actions">
-                  <button class="btn btn-primary" (click)="moveBackward(item)"><i class="fa fa-arrow-left"></i></button>
-                  <button class="btn btn-primary" (click)="moveForward(item)"><i class="fa fa-arrow-right"></i></button>
-              </div>
-            </div>
-        </div>
+          <div class="card inner-card" *ngFor="let item of inProgressItems">
+            <app-card
+              [item]="item"
+              (moveForward)="moveForward($event)"
+              (moveBackward)="moveBackward($event)"
+            ></app-card>
+          </div>
         </ng-container>
       </div>
     </div>
@@ -68,17 +57,12 @@
       </div>
       <div class="card-body">
         <ng-container *ngIf="doneItems.length; else empty">
-        <div class="card inner-card" *ngFor="let item of doneItems">
-            <div class="card-body">
-              <div class="info">
-                  <h5 class="card-title">{{item.id}}.{{item.name}}</h5>
-                  <span class="tag">{{item.difficulty}}</span>
-              </div>
-              <div class="actions">
-                <button class="btn btn-primary" (click)="moveBackward(item)"><i class="fa fa-arrow-left"></i></button>
-              </div>
-            </div>
-        </div>
+          <div class="card inner-card" *ngFor="let item of doneItems">
+            <app-card
+              [item]="item"
+              (moveBackward)="moveBackward($event)"
+            ></app-card>
+          </div>
         </ng-container>
       </div>
     </div>

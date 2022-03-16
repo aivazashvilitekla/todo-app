@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-enum Difficulty {
+export enum Difficulty {
   Easy = 'Easy',
   Medium = 'Medium',
   Hard = 'Hard',
 }
-enum State {
+export enum State {
   Todo = 'Todo',
   InProgress = 'InProgress',
   Done = 'Done',
@@ -24,13 +24,10 @@ export class AppComponent {
   startingId: number = 0;
   taskName: string = '';
   taskDifficulty: Difficulty | string = '';
-  todoItems: Item[] = [
-  ];
-  inProgressItems: Item[] = [
-  ];
 
-  doneItems: Item[] = [
-  ];
+  todoItems: Item[] = [];
+  inProgressItems: Item[] = [];
+  doneItems: Item[] = [];
 
   addNewItem() {
     if (this.taskName && this.taskDifficulty) {
@@ -46,38 +43,49 @@ export class AppComponent {
       alert('ველები 3 წელია სიცარიელეში არიან - სოსო');
     }
   }
-  deleteItem(itemsArray: string, id: number) {
-    if (itemsArray === 'todoItems') {
-      this.todoItems = this.todoItems.filter((item) => item.id != id);
+  deleteItem(item: Item) {
+    if (item.state === State.Todo) {
+      this.todoItems = this.todoItems.filter(
+        (element) => element.id != item.id
+      );
     }
-    if (itemsArray === 'inProgressItems') {
-      this.inProgressItems = this.inProgressItems.filter((item) => item.id != id);
+    if (item.state === State.InProgress) {
+      this.inProgressItems = this.inProgressItems.filter(
+        (element) => element.id != item.id
+      );
     }
-    if (itemsArray === 'doneItems') {
-      this.doneItems = this.doneItems.filter((item) => item.id != id);
+    if (item.state === State.Done) {
+      this.doneItems = this.doneItems.filter(
+        (element) => element.id != item.id
+      );
     }
   }
   moveForward(item: Item) {
-    
     if (item.state === State.Todo) {
-      this.todoItems = this.todoItems.filter((element) => element.id != item.id);
-      this.inProgressItems.push({...item, state: State.InProgress});
+      this.todoItems = this.todoItems.filter(
+        (element) => element.id != item.id
+      );
+      this.inProgressItems.push({ ...item, state: State.InProgress });
     }
     if (item.state === State.InProgress) {
-      this.inProgressItems = this.inProgressItems.filter((element) => element.id != item.id);
-      this.doneItems.push({...item, state: State.Done});
+      this.inProgressItems = this.inProgressItems.filter(
+        (element) => element.id != item.id
+      );
+      this.doneItems.push({ ...item, state: State.Done });
     }
   }
   moveBackward(item: Item) {
     if (item.state === State.InProgress) {
-      this.inProgressItems = this.inProgressItems.filter((element) => element.id != item.id);
-      this.todoItems.push({...item, state: State.Todo});
+      this.inProgressItems = this.inProgressItems.filter(
+        (element) => element.id != item.id
+      );
+      this.todoItems.push({ ...item, state: State.Todo });
     }
     if (item.state === State.Done) {
-      this.doneItems = this.doneItems.filter((element) => element.id != item.id);
+      this.doneItems = this.doneItems.filter(
+        (element) => element.id != item.id
+      );
       this.inProgressItems.push({ ...item, state: State.InProgress });
-      
     }
-    
   }
 }

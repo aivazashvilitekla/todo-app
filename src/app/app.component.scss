@@ -1,53 +1,41 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-#container{
-    width: 80%;
-    margin: 0 auto;
-    .add-new{
-        display: flex;
-        padding: 20px 0;
-        input{
-            width: 300px;
-        }
-        select{
-            margin: 0 10px;
-            border: 1px solid silver;
-            background: none;
-            border-radius: 5px;
-
-        }
+#container {
+  width: 80%;
+  margin: 0 auto;
+  .add-new {
+    display: flex;
+    padding: 20px 0;
+    input {
+      width: 300px;
     }
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 50px;
-        .to-do{
-            border: 1px solid rgb(0, 153, 255);
-        }
-        .in-progress{
-            border: 1px solid cyan;
-        }
-        .done{
-            border: 1px solid rgb(10, 238, 10);
-        }
+    select {
+      margin: 0 10px;
+      border: 1px solid silver;
+      background: none;
+      border-radius: 5px;
     }
-}
-.tag{
-    background: rgb(78, 144, 206);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 3px;
-    font-weight: bold;
-}
-.inner-card{
-    margin-bottom: 10px;
-    .card-body{
-        display: flex;
-        justify-content: space-between;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    .to-do {
+      border: 1px solid rgb(0, 153, 255);
     }
+    .in-progress {
+      border: 1px solid cyan;
+    }
+    .done {
+      border: 1px solid rgb(10, 238, 10);
+    }
+  }
+}
+.inner-card {
+  margin-bottom: 10px;
 }

@@ -1,0 +1,38 @@
+<div class="card-body">
+  <div class="info">
+    <h5 class="card-title">{{ item.id }}.{{ item.name }}</h5>
+    <span
+      class="info__difficulty"
+      [ngClass]="getDifficultyClassList(item.difficulty)"
+      >{{ item.difficulty }}</span
+    >
+  </div>
+  <div class="actions">
+    <!-- Todo Actions -->
+    <ng-container *ngIf="item.state === 'Todo'; else second">
+      <button class="btn btn-primary" (click)="moveForwardHandler(item)">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+      <button class="btn btn-danger" (click)="deleteItemHandler(item)">
+        <i class="fa fa-close"></i>
+      </button>
+    </ng-container>
+    <!-- InProgress Actions -->
+    <ng-template #second>
+      <ng-container *ngIf="item.state === 'InProgress'; else third">
+        <button class="btn btn-primary" (click)="moveBackwardHandler(item)">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <button class="btn btn-primary" (click)="moveForwardHandler(item)">
+          <i class="fa fa-arrow-right"></i>
+        </button>
+      </ng-container>
+    </ng-template>
+    <!-- Done Actions -->
+    <ng-template #third>
+      <button class="btn btn-primary" (click)="moveBackwardHandler(item)">
+        <i class="fa fa-arrow-left"></i>
+      </button>
+    </ng-template>
+  </div>
+</div>

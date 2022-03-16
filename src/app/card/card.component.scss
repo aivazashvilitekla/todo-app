@@ -1,0 +1,22 @@
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  &__difficulty {
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    &--easy {
+      background: rgb(141, 233, 113);
+    }
+    &--medium {
+      background: rgb(78, 144, 206);
+    }
+    &--hard {
+      background: rgb(180, 36, 36);
+    }
+  }
+}
